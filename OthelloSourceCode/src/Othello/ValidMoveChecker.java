@@ -29,7 +29,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
             for (int j = 1; j < 8; j++) {
                 int deltaYCoordinate = yCoordinate+directions[i][1];
                 int deltaXCoordinate = xCoordinate+directions[i][0];
-                if (deltaYCoordinate == -1 || deltaXCoordinate == -1) {
+                if (deltaYCoordinate == -1 || deltaXCoordinate == -1 || deltaYCoordinate == 8 || deltaXCoordinate == 8) {
                     break;
                 }
                 Chess chess = board[deltaYCoordinate][deltaXCoordinate].getChess();
