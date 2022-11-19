@@ -29,17 +29,7 @@ public class App {
         int isEndGameCount = 0;
         boolean flag = true;
         OutputHandler normalOutputHandler = new NormalOutput();
-        String testBoard[][] = {
-            {"B", "B", "B", "B", "B", "B", " ", " "},
-            {"B", "B", "B", "B", "B", "B", " ", " "},
-            {"B", "B", "W", "B", "B", "B", "B", " "},
-            {"B", "B", "W", "B", "B", "B", "B", " "},
-            {" ", "B", "W", "B", "B", "B", "B", "B"},
-            {" ", " ", "W", "B", "B", "B", "B", " "},
-            {" ", " ", " ", "B", "B", " ", " ", " "},
-            {" ", " ", " ", " ", " ", " ", " ", " "},
-        };
-        GameBoard gameBoard = new GameBoard(testBoard);
+        GameBoard gameBoard = new GameBoard();
         normalOutputHandler.printGameBoard(gameBoard.getBoard());
         while (true) {
             String input;
