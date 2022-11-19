@@ -2,7 +2,6 @@ package Othello;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ValidMoveChecker implements ValidMoveCheckService {
 
@@ -13,7 +12,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
         HashMap<Position, int[]> result = new HashMap<Position, int[]>();
         ArrayList<PositionDirection> validMovePositionDirections = checkEightDirection(flag, position, board);
         for (PositionDirection validMovePositionDirection : validMovePositionDirections) {
-            result.put(validMovePositionDirection.getPosition(), validMovePositionDirection.getDirection());
+            result.put(validMovePositionDirection, validMovePositionDirection.getDirection());
         }
         return result;
     }
@@ -29,7 +28,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
             for (int j = 1; j < 8; j++) {
                 int deltaYCoordinate = yCoordinate+directions[i][1];
                 int deltaXCoordinate = xCoordinate+directions[i][0];
-                if (deltaYCoordinate == -1 || deltaXCoordinate == -1 || deltaYCoordinate == 8 || deltaXCoordinate == 8) {
+                if (isBoundary(deltaXCoordinate, deltaYCoordinate) == true) {
                     break;
                 }
                 Chess chess = board[deltaYCoordinate][deltaXCoordinate].getChess();
@@ -37,7 +36,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
                     break;
                 }
                 if (chess == null) {
-                    validMovePositionDirection.add(new PositionDirection(board[deltaYCoordinate][deltaXCoordinate].getPosition(), oppositeDirection[i]));
+                    validMovePositionDirection.add(new PositionDirection(deltaXCoordinate, deltaYCoordinate, oppositeDirection[i]));
                     break;
                 }
                 if (chess.getValue() == flag) {
@@ -51,5 +50,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
         return validMovePositionDirection;
     }
 
-
+    private boolean isBoundary(int XCoordinate, int YCoordinate) {
+        return XCoordinate == -1 || YCoordinate == -1 || XCoordinate == 8 || YCoordinate == 8;
+    }
 }

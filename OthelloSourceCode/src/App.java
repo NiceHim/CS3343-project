@@ -3,6 +3,17 @@ import java.util.Scanner;
 import Othello.*;
 
 public class App {
+    private static void printWinMessage(Player player1, Player player2, int blackChessAmt, int whiteChessAmt) {
+        System.out.println("--------------------Game Over--------------------");
+        System.out.printf("Number of Black Chess: %d    Number pf White Chess: %d\n", blackChessAmt, whiteChessAmt);
+        if (blackChessAmt > whiteChessAmt) {
+            System.out.printf("%s(%c) win the game!!!", player1.getName(), player1.getFlag());
+        } else if (blackChessAmt < whiteChessAmt) {
+            System.out.printf("%s(%c) win the game!!!", player2.getName(), player2.getFlag());
+        } else {
+            System.out.println("Tie!!!");
+        }
+    }
     public static void main(String[] args) throws Exception {
         String nameOfPlayer1;
         String nameOfPlayer2;
@@ -18,25 +29,31 @@ public class App {
         int isEndGameCount = 0;
         boolean flag = true;
         OutputHandler normalOutputHandler = new NormalOutput();
-        GameBoard gameBoard = new GameBoard();
+        String testBoard[][] = {
+            {"B", "B", "B", "B", "B", "B", " ", " "},
+            {"B", "B", "B", "B", "B", "B", " ", " "},
+            {"B", "B", "W", "B", "B", "B", "B", " "},
+            {"B", "B", "W", "B", "B", "B", "B", " "},
+            {" ", "B", "W", "B", "B", "B", "B", "B"},
+            {" ", " ", "W", "B", "B", "B", "B", " "},
+            {" ", " ", " ", "B", "B", " ", " ", " "},
+            {" ", " ", " ", " ", " ", " ", " ", " "},
+        };
+        GameBoard gameBoard = new GameBoard(testBoard);
         normalOutputHandler.printGameBoard(gameBoard.getBoard());
         while (true) {
             String input;
             Player thisTurnPlayer = flag == true ? player1 : player2;
             gameBoard.findAllValidMovePosition(thisTurnPlayer.getFlag());
             if (gameBoard.isEmptyValidMovePositon() == true) {
+                if (gameBoard.countBlackChess() == 0 || gameBoard.countWhiteChess() == 0) {
+                    printWinMessage(player1, player2, gameBoard.countBlackChess(), gameBoard.countWhiteChess());
+                    break;
+                }
                 System.out.printf("No valid move for %s(%c). Pass!\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
                 isEndGameCount++;
                 if (isEndGameCount == 2) {
-                    System.out.println("--------------------Game Over--------------------");
-                    System.out.printf("Number of Black Chess: %d    Number pf White Chess: %d\n", gameBoard.countBlackChess(), gameBoard.countWhiteChess());
-                    if (gameBoard.countBlackChess() > gameBoard.countWhiteChess()) {
-                        System.out.printf("%s(%c) win the game!!!", player1.getName(), player1.getFlag());
-                    } else if (gameBoard.countBlackChess() < gameBoard.countWhiteChess()) {
-                        System.out.printf("%s(%c) win the game!!!", player2.getName(), player2.getFlag());
-                    } else {
-                        System.out.println("Tie!!!");
-                    }
+                    printWinMessage(player1, player2, gameBoard.countBlackChess(), gameBoard.countWhiteChess());
                     break;
                 }
                 continue;
