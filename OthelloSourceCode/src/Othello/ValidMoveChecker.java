@@ -50,7 +50,7 @@ public class ValidMoveChecker implements ValidMoveCheckService {
         return validMovePositionDirection;
     }
 
-    private boolean isBoundary(int XCoordinate, int YCoordinate) {
+    public boolean isBoundary(int XCoordinate, int YCoordinate) {
         return XCoordinate == -1 || YCoordinate == -1 || XCoordinate == 8 || YCoordinate == 8;
     }
 }
