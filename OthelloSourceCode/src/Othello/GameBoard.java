@@ -36,10 +36,6 @@ public class GameBoard {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 this.board[i][j] = new Grid(new Position(j, i), null);
-            }
-        }
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
                 if (board[i][j].equals(" ")) continue;
                 this.board[i][j].setChess(this.chessFactory.getChess(board[i][j].charAt(0)));
                 this.positionMarker.addChessPosition(board[i][j].charAt(0), new Position(j, i));

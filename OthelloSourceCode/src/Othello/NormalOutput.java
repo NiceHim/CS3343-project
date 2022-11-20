@@ -20,10 +20,5 @@ public class NormalOutput implements OutputHandler {
         }
         System.out.println(yDelimiter);
     }
-
-    public static void main(String[] args) {
-        GameBoard gameBoard = new GameBoard();
-        OutputHandler outputHandler = new NormalOutput();
-        outputHandler.printGameBoard(gameBoard.getBoard());
-    }
+    
 }
