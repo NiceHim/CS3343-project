@@ -15,7 +15,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("D3"));
         expectedResult.add(new Position("F5"));
         GameBoard gameBoard = new GameBoard();
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -28,7 +28,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("D6"));
         expectedResult.add(new Position("C5"));
         GameBoard gameBoard = new GameBoard();
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -52,7 +52,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("D2"));
         expectedResult.add(new Position("F2"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -73,7 +73,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("G7"));
         expectedResult.add(new Position("F7"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -102,7 +102,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("F8"));
         expectedResult.add(new Position("D8"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -129,7 +129,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("G1"));
         expectedResult.add(new Position("H6"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -160,7 +160,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("G7"));
         expectedResult.add(new Position("H7"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -179,7 +179,7 @@ public class GameBoardTest {
         };
         HashSet<Position> expectedResult = new HashSet<>() ;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -210,7 +210,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("B8"));
         expectedResult.add(new Position("D8"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -240,7 +240,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("G4"));
         expectedResult.add(new Position("G8"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -267,7 +267,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("H6"));
         expectedResult.add(new Position("H7"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         HashSet<Position> result = gameBoard.getValidMovePositions();
         assertEquals(expectedResult, result);
     }
@@ -280,7 +280,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("E4"));
         expectedResult.add(new Position("D5"));
         GameBoard gameBoard = new GameBoard();
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         gameBoard.addChess('B', new Position("D3"));
         HashSet<Position> result = gameBoard.getAllChessPosition('B');
         assertEquals(expectedResult, result);
@@ -313,7 +313,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("E6"));
         expectedResult.add(new Position("F6"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         gameBoard.addChess('B', new Position("C1"));
         HashSet<Position> result = gameBoard.getAllChessPosition('B');
         assertEquals(expectedResult, result);
@@ -346,7 +346,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("C7"));
         expectedResult.add(new Position("D8"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         gameBoard.addChess('B', new Position("D8"));
         HashSet<Position> result = gameBoard.getAllChessPosition('B');
         assertEquals(expectedResult, result);
@@ -376,7 +376,7 @@ public class GameBoardTest {
         expectedResult.add(new Position("E7"));
         expectedResult.add(new Position("E8"));
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         gameBoard.addChess('W', new Position("E8"));
         HashSet<Position> result = gameBoard.getAllChessPosition('W');
         assertEquals(expectedResult, result);
@@ -396,7 +396,7 @@ public class GameBoardTest {
         };
         int expectedResult = 9;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         gameBoard.addChess('W', new Position("E8"));
         int result = gameBoard.countWhiteChess();
         assertEquals(expectedResult, result);
@@ -416,7 +416,7 @@ public class GameBoardTest {
         };
         int expectedResult = 12;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         gameBoard.addChess('B', new Position("D8"));
         int result = gameBoard.countBlackChess();
         assertEquals(expectedResult, result);
@@ -436,7 +436,7 @@ public class GameBoardTest {
         };
         boolean expectedResult = true;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         boolean result = gameBoard.isEmptyValidMovePositon();
         assertEquals(expectedResult, result);
     }
@@ -456,7 +456,7 @@ public class GameBoardTest {
         };
         boolean expectedResult = false;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         boolean result = gameBoard.isEmptyValidMovePositon();
         assertEquals(expectedResult, result);
     }
@@ -475,7 +475,7 @@ public class GameBoardTest {
         };
         boolean expectedResult = true;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('B');
+        gameBoard.findAllValidMovePositionAndDirection('B');
         boolean result = gameBoard.isContainValidMovePosition(new Position("D1"));
         assertEquals(expectedResult, result);
     }
@@ -495,7 +495,7 @@ public class GameBoardTest {
         };
         boolean expectedResult = false;
         GameBoard gameBoard = new GameBoard(testBoard);
-        gameBoard.findAllValidMovePosition('W');
+        gameBoard.findAllValidMovePositionAndDirection('W');
         boolean result = gameBoard.isContainValidMovePosition(new Position("A8"));
         assertEquals(expectedResult, result);
     }

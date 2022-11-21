@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class GameBoard {
-
-    private ValidMoveFetchService validMoveFetchService;
+    private ValidMovePositionFetchService validMovePositionFetchService;
+    private ValidMoveDirectionFetchService validMoveDirectionFetchService;
     private PositionMarker positionMarker;
     private ChessFactory chessFactory;
     private Grid[][] board;
@@ -56,20 +56,22 @@ public class GameBoard {
     }
 
     public boolean isContainValidMovePosition(Position position) {
-        return this.validMoveFetchService.isContainValidMovePosition(position);
+        return this.validMoveDirectionFetchService.isContainValidMovePosition(position);
     }
 
-    public void findAllValidMovePosition(Character flag) {
-        this.validMoveFetchService = new ValidMoveFetch();
-        this.validMoveFetchService.findAllValidMovePosition(flag, this.positionMarker.getAllChessPosition(flag), this.board);
+    public void findAllValidMovePositionAndDirection(Character flag) {
+        this.validMovePositionFetchService = new ValidMovePositionFetch();
+        this.validMoveDirectionFetchService = new ValidMoveDirectionFetch();
+        this.validMovePositionFetchService.findAllValidMovePosition(flag, this.positionMarker.getAllChessPosition(flag), this.board);
+        this.validMoveDirectionFetchService.findAllValidMovePosition(flag, this.positionMarker.getAllChessPosition(flag), this.board);
     }
 
     public HashSet<Position> getValidMovePositions() {
-        return this.validMoveFetchService.getValidMovePositions();
+        return this.validMovePositionFetchService.getValidMovePositions();
     }
 
     public ArrayList<int[]> getValidMoveDirections(Position position) {
-        return this.validMoveFetchService.getValidMoveDirections(position);
+        return this.validMoveDirectionFetchService.getValidMoveDirections(position);
     }
 
     public HashSet<Position> getAllChessPosition(Character flag) {
@@ -77,7 +79,7 @@ public class GameBoard {
     }
 
     public boolean isEmptyValidMovePositon() {
-        return this.validMoveFetchService.countValidMovePositon() == 0 ? true : false;
+        return this.validMovePositionFetchService.isEmptyValidMovePositon();
     }
 
     public int countBlackChess() {

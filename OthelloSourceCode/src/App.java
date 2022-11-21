@@ -35,7 +35,7 @@ public class App {
         while (true) {
             String input;
             Player thisTurnPlayer = flag == true ? player1 : player2;
-            gameBoard.findAllValidMovePosition(thisTurnPlayer.getFlag());
+            gameBoard.findAllValidMovePositionAndDirection(thisTurnPlayer.getFlag());
             if (gameBoard.isEmptyValidMovePositon() == true) {
                 if (gameBoard.countBlackChess() == 0 || gameBoard.countWhiteChess() == 0) {
                     printWinMessage(player1, player2, gameBoard.countBlackChess(), gameBoard.countWhiteChess());
