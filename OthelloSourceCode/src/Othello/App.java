@@ -1,10 +1,11 @@
+package Othello;
 
 import java.util.Scanner;
 
 import Othello.*;
 
 public class App {
-    private static void printWinMessage(Player player1, Player player2, int blackChessAmt, int whiteChessAmt) {
+    public static void printWinMessage(Player player1, Player player2, int blackChessAmt, int whiteChessAmt) {
         System.out.println("--------------------Game Over--------------------");
         System.out.printf("Number of Black Chess: %d    Number pf White Chess: %d\n", blackChessAmt, whiteChessAmt);
         if (blackChessAmt > whiteChessAmt) {
@@ -15,6 +16,12 @@ public class App {
             System.out.println("Tie!!!");
         }
     }
+
+    public static void printHint(Player thisTurnPlayer, GameBoard gameBoard) {
+        new WithHintOutput(gameBoard.getValidMovePositions()).printGameBoard(gameBoard.getBoard());
+        System.out.printf("%s(%c), please input position (e.g. A1):\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
+    }
+    
     public static void main(String[] args) throws Exception {
         String nameOfPlayer1;
         String nameOfPlayer2;
@@ -55,16 +62,18 @@ public class App {
             System.out.printf("%s(%c), please input position (e.g. A1). (Input H / h for Hint):\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
             input = scanner.nextLine();
             if (input.equals("H") || input.equals("h")) {
-                new WithHintOutput(gameBoard.getValidMovePositions()).printGameBoard(gameBoard.getBoard());
-                System.out.printf("%s(%c), please input position (e.g. A1):", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
+                printHint(thisTurnPlayer, gameBoard);
+                // new WithHintOutput(gameBoard.getValidMovePositions()).printGameBoard(gameBoard.getBoard());
+                // System.out.printf("%s(%c), please input position (e.g. A1):", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
                 input = scanner.nextLine();
             }
             while (!gameBoard.isContainValidMovePosition(new Position(input))) {
                 System.out.printf("Invalid Position! %s(%c), please input position (e.g. A1). (Input H / h for Hint):\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
                 input = scanner.nextLine();
                 if (input.equals("H") || input.equals("h")) {
-                    new WithHintOutput(gameBoard.getValidMovePositions()).printGameBoard(gameBoard.getBoard());
-                    System.out.printf("%s(%c), please input position (e.g. A1):\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
+                    printHint(thisTurnPlayer, gameBoard);
+                    // new WithHintOutput(gameBoard.getValidMovePositions()).printGameBoard(gameBoard.getBoard());
+                    // System.out.printf("%s(%c), please input position (e.g. A1):\n", thisTurnPlayer.getName(), thisTurnPlayer.getFlag());
                     input = scanner.nextLine();
                 }
             }
