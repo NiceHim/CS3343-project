@@ -22,9 +22,11 @@ public class App {
         System.out.println("Welocome to Othello!");
         System.out.println("Please input the name of player1:");
         nameOfPlayer1 = scanner.nextLine();
+        System.out.println("Wellcome " + nameOfPlayer1 + "!");
         Player player1 = new Player(nameOfPlayer1, 'B');
         System.out.println("Please input the name of player2:");
         nameOfPlayer2 = scanner.nextLine();
+        System.out.println("Wellcome " + nameOfPlayer2 + "!");
         Player player2 = new Player(nameOfPlayer2, 'W');
         System.out.println("--------------------Game Start--------------------");
         int isEndGameCount = 0;
