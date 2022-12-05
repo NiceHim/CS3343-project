@@ -1,10 +1,9 @@
 # CS3343-project (Othello)
 ______________________________________
 
-
-                                                                  Othello
-          
-______________________________________
+<p align="center">
+        Othello
+</p>
 
 # Description 
 ### Othello is an application of a board game for two players
